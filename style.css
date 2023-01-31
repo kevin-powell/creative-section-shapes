@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --body-bg: hsl(0, 0%, 12%);
+}
+
+html {
+  color-scheme: dark light;
+}
+
+body {
+  background: var(--body-bg);
+  color: white;
+  font-family: system-ui;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.wrapper {
+  max-width: 50rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.site-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.25rem;
+}
+
+section {
+  padding-block: 5rem;
+}
+
+.diagonal {
+  --skew-angle: -5deg;
+  --background: linear-gradient(
+                  45deg, 
+                  #12c2e9, 
+                  #c471ed, 
+                  #f64f59
+                );
+
+  position: relative;
+  isolation: isolate;
+}
+
+.diagonal::after {
+  content: '';
+  background: var(--background);
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  transform: skewY(var(--skew-angle));
+}
+
+.spikes {
+  --spike-width: 50px;
+  --spike-height: 10px;
+  --spike-color: var(--body-bg);
+  
+  position: relative;
+  color: black;
+  background: 
+    linear-gradient(
+      to right, 
+      #fdc830, 
+      #f37335);
+}
+
+.spikes::before,
+.spikes::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: var(--spike-height);
+  background: var(--spike-color);
+  -webkit-mask-image: url('assets/triangle.svg');
+  -webkit-mask-size: var(--spike-width) var(--spike-height);
+  /* -webkit-mask-repeat: repeat-x; */
+  mask-image: url('assets/triangle.svg');
+  mask-size: var(--spike-width) var(--spike-height);
+  /* mask-repeat: repeat-x; */
+}
+
+.spikes::before {
+  top: 0;
+}
+.spikes::after {
+  bottom: 0;
+  transform: rotate(.5turn);
+}
+
+
+.wavy {
+  /* mask created with 
+  https://css-generators.com/wavy-shapes/ */
+  
+  background: 
+    linear-gradient(
+      to right, 
+      #00f260, 
+      #0575e6);
+
+  --mask:
+    radial-gradient(50.39px at 50% 68.75px,#000 99%,#0000 101%) calc(50% - 50px) 0/100px 51% repeat-x,
+    radial-gradient(50.39px at 50% -43.75px,#0000 99%,#000 101%) 50% 25px/100px calc(51% - 25px) repeat-x,
+    radial-gradient(50.39px at 50% calc(100% - 68.75px),#000 99%,#0000 101%) calc(50% - 50px) 100%/100px 51% repeat-x,
+    radial-gradient(50.39px at 50% calc(100% + 43.75px),#0000 99%,#000 101%) 50% calc(100% - 25px)/100px calc(51% - 25px) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+
+}
